@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Generate Password</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mt-5">
+        <button id="generate" type="button" class="btn btn-primary btn-lg">Generate Password</button>
+        
+        <p id="password"></p>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script>
+            const generateEl = document.getElementById("generate")
+            generateEl.onclick = function generate() {
+                console.log("buttonclick")
+            //Initialize variables
+            const specialChar = ['!', '#', '$', '%', '&', '‘', '(', ')', '*', '+', '-', '.', '/', ':', ';', '=', '?', '@', '^', '_', '{', '|', '}'];
+            const numericChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            const lowerCaseChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+            const upperCaseChar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+            
+            let passArray = [];
+            let tempArray = [];
+            let final=[];
+            
+            
+        
+        //get password preferences from user   
+                const special = confirm('Do you want special characters');
+                if(special == true) {
+                    tempArray = tempArray.concat(specialChar);
+                    console.log(tempArray);
+                }
+                
+                const numeric = confirm('Do you want numeric characters');
+                if (numeric == true) {
+                    tempArray = tempArray.concat(numericChar);
+                    console.log(tempArray);
+                }
+                
+                const lowercase = confirm('Do you want lowercase characters');
+                if (numeric == true) {
+                    tempArray = tempArray.concat(lowerCaseChar);
+                    console.log(tempArray);
+                }
+                
+                const uppercase = confirm('Do you want uppercase characters');
+                if (numeric == true) {
+                    tempArray = tempArray.concat(upperCaseChar);
+                    console.log(tempArray);
+                }
+        
+                function howMany() {
+                    const numberOfChar = prompt("How many characters do you want?");
+                    if (numberOfChar != null && numberOfChar > 7 && numberOfChar < 128) {
+                      console.log(numberOfChar)
+                      for (let i = 0; i < numberOfChar; i++) {
+        //combine and post password
+                        let pass = tempArray[Math.floor(Math.random() * tempArray.length)];
+                        console.log(pass);
+                        final.push(pass);
+                        passArray = passArray.concat(pass);
+                        document.getElementById("password").innerHTML = "Your password is: " + (final).join("");
+                        
+            
+                      }
+        
+                    }
+                  }
+                  howMany();
+                  
+                  
+                }
+        </script>
+</html>
+
+
